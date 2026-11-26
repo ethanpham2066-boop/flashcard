@@ -206,6 +206,9 @@ function showCard() {
   if (state.studyIndex >= state.studyQueue.length) {
     $("study-card").textContent = "🎉 Đã ôn hết bộ thẻ!";
     $("study-progress").textContent = "Hoàn thành";
+    $("know-btn").hidden = true;
+    $("dontknow-btn").hidden = true;
+    $("next-btn").hidden = true;
     renderCards();
     renderStats();
     return;
@@ -214,6 +217,14 @@ function showCard() {
   state.flipped = false;
   $("study-card").textContent = card.front;
   $("study-progress").textContent = `${state.studyIndex + 1} / ${state.studyQueue.length}`;
+  $("know-btn").hidden = false;
+  $("dontknow-btn").hidden = false;
+  $("next-btn").hidden = true;
+}
+
+function nextCard() {
+  state.studyIndex++;
+  showCard();
 }
 
 $("study-card").onclick = () => {
@@ -229,9 +240,21 @@ async function mark(known) {
   const { error } = await sb.from("cards").update({ known }).eq("id", card.id);
   if (error) return alert(error.message);
   card.known = known; // state.cards dùng chung object này nên thống kê tự cập nhật
-  state.studyIndex++;
-  showCard();
+
+  if (known) {
+    nextCard();
+    return;
+  }
+
+  // Chưa nhớ: hiện đáp án và chờ người dùng bấm Tiếp theo
+  state.flipped = true;
+  $("study-card").textContent = card.back;
+  $("know-btn").hidden = true;
+  $("dontknow-btn").hidden = true;
+  $("next-btn").hidden = false;
+  renderStats();
 }
 
 $("know-btn").onclick = () => mark(true);
 $("dontknow-btn").onclick = () => mark(false);
+$("next-btn").onclick = nextCard;
