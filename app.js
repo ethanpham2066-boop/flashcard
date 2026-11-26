@@ -259,6 +259,21 @@ $("know-btn").onclick = () => mark(true);
 $("dontknow-btn").onclick = () => mark(false);
 $("next-btn").onclick = nextCard;
 
-$("exit-study-btn").onclick = () => {
-  $("study-section").hidden = true;
-};
+// Tự tạo nút Thoát trong phần ôn tập
+(function addExitButton() {
+  const section = $("study-section");
+  if (!section.querySelector("#exit-study-btn")) {
+    const btn = document.createElement("button");
+    btn.id = "exit-study-btn";
+    btn.textContent = "✕ Thoát";
+    section.prepend(btn);
+  }
+  $("exit-study-btn").onclick = () => {
+    section.hidden = true;
+  };
+})();
+
+// Nhấn phím Esc để thoát ôn tập
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") $("study-section").hidden = true;
+});
