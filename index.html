@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcard ôn thi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📚 Flashcard ôn thi</h1>
+    <button id="logout-btn" hidden>Đăng xuất</button>
+  </header>
+
+  <main>
+    <!-- Phần đăng nhập -->
+    <section id="auth-section" class="panel">
+      <h2>Đăng nhập</h2>
+      <input id="email" type="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Mật khẩu (tối thiểu 6 ký tự)" />
+      <div class="row">
+        <button id="login-btn">Đăng nhập</button>
+        <button id="signup-btn" class="secondary">Đăng ký</button>
+      </div>
+      <p id="auth-msg" class="msg"></p>
+    </section>
+
+    <!-- Phần ứng dụng chính (hiện sau khi đăng nhập) -->
+    <section id="app-section" class="panel" hidden>
+      <h2>Bộ thẻ của tôi</h2>
+      <div class="row">
+        <input id="deck-name" placeholder="Tên bộ thẻ mới (VD: Toán cao cấp)" />
+        <button id="add-deck-btn">Tạo bộ</button>
+      </div>
+      <ul id="deck-list" class="list"></ul>
+    </section>
+
+    <!-- Chi tiết một bộ thẻ -->
+    <section id="deck-view" class="panel" hidden>
+      <h2 id="deck-title"></h2>
+      <p id="stats" class="stats"></p>
+
+      <h3>Thêm thẻ</h3>
+      <div class="row">
+        <input id="card-front" placeholder="Mặt trước (câu hỏi)" />
+        <input id="card-back" placeholder="Mặt sau (đáp án)" />
+        <button id="add-card-btn">Thêm</button>
+      </div>
+
+      <h3>Thêm nhiều thẻ cùng lúc</h3>
+      <p class="hint">Mỗi dòng một thẻ, dạng: câu hỏi | đáp án</p>
+      <textarea id="bulk-text" rows="4" placeholder="Thủ đô Pháp? | Paris&#10;2 + 2 = ? | 4"></textarea>
+      <button id="bulk-btn">Thêm hàng loạt</button>
+
+      <div class="row">
+        <button id="study-btn">▶ Bắt đầu ôn</button>
+      </div>
+
+      <h3>Danh sách thẻ</h3>
+      <ul id="card-list" class="list"></ul>
+    </section>
+
+    <!-- Chế độ ôn tập -->
+    <section id="study-section" class="panel" hidden>
+      <p id="study-progress" class="stats"></p>
+      <div id="study-card" class="flashcard" title="Bấm để lật thẻ"></div>
+      <div class="row center">
+        <button id="dontknow-btn" class="danger">Chưa nhớ</button>
+        <button id="know-btn" class="success">Nhớ rồi</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Thư viện Supabase (qua CDN, không cần cài đặt) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
