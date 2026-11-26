@@ -205,3 +205,167 @@ button.danger {
   .flashcard { font-size: 18px; min-height: 180px; }
   .panel { padding: 18px; }
 }
+
+/* ===== THEME: Đen - Xanh - Vàng chanh ===== */
+:root {
+  --bg: #030407;
+  --blue: #1558C9;
+  --blue-dark: #0c3a8a;
+  --lime: #D4FF24;
+  --text: #f5f7fa;
+  --muted: #9fb3d1;
+  --glass: rgba(21, 88, 201, 0.08);
+  --glass-border: rgba(212, 255, 36, 0.22);
+}
+
+/* Nền chính: đen + hình minh họa xanh/vàng */
+body {
+  background-color: var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Ccircle cx='720' cy='160' r='260' fill='%231558C9' fill-opacity='0.35'/%3E%3Ccircle cx='140' cy='760' r='300' fill='%231558C9' fill-opacity='0.18'/%3E%3Ccircle cx='820' cy='820' r='120' fill='%23D4FF24' fill-opacity='0.12'/%3E%3Cpath d='M0 620 Q 225 520 450 620 T 900 620' stroke='%23D4FF24' stroke-opacity='0.2' stroke-width='2' fill='none'/%3E%3Cpath d='M0 660 Q 225 560 450 660 T 900 660' stroke='%231558C9' stroke-opacity='0.35' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  animation: none;
+  color: var(--text);
+}
+
+/* Lưới chấm vàng mờ */
+body::before {
+  background-image: radial-gradient(rgba(212, 255, 36, 0.12) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Các khối sáng xanh/vàng trôi chậm */
+body::after {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(21, 88, 201, 0.45) 0, transparent 24%),
+    radial-gradient(circle at 80% 25%, rgba(212, 255, 36, 0.14) 0, transparent 18%),
+    radial-gradient(circle at 60% 85%, rgba(21, 88, 201, 0.35) 0, transparent 26%);
+}
+
+/* Sao rơi màu vàng chanh */
+html::before {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, #D4FF24, transparent),
+    radial-gradient(1px 1px at 120px 80px, #ffffff, transparent),
+    radial-gradient(2px 2px at 60px 150px, #D4FF24, transparent),
+    radial-gradient(1px 1px at 170px 20px, #6ea8ff, transparent),
+    radial-gradient(1.5px 1.5px at 100px 170px, #ffffff, transparent),
+    radial-gradient(1px 1px at 40px 110px, #D4FF24, transparent);
+  opacity: 0.6;
+}
+
+/* Header */
+header {
+  background: rgba(3, 4, 7, 0.75);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+header h1 {
+  background: linear-gradient(90deg, var(--lime), #6ea8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+header button:hover {
+  background: rgba(212, 255, 36, 0.15);
+  color: var(--lime);
+}
+
+/* Panel và chữ */
+.panel {
+  background: rgba(3, 4, 7, 0.6);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(212, 255, 36, 0.08);
+}
+
+h2 { color: #fff; }
+h3 { color: var(--lime); }
+
+/* Ô nhập */
+input, textarea {
+  background: rgba(3, 4, 7, 0.7);
+  border: 1px solid rgba(21, 88, 201, 0.5);
+  color: var(--text);
+}
+
+input:focus, textarea:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 4px rgba(212, 255, 36, 0.18);
+  background: rgba(3, 4, 7, 0.9);
+}
+
+/* Nút */
+button {
+  background: linear-gradient(135deg, #1558C9, var(--blue-dark));
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(21, 88, 201, 0.5);
+}
+
+button:hover {
+  box-shadow: 0 12px 28px rgba(21, 88, 201, 0.7);
+}
+
+button.secondary,
+header button {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(21, 88, 201, 0.6);
+  color: var(--text);
+  box-shadow: none;
+}
+
+button.success {
+  background: linear-gradient(135deg, var(--lime), #a8d91a);
+  color: #030407;
+  box-shadow: 0 8px 22px rgba(212, 255, 36, 0.35);
+}
+
+button.danger {
+  background: linear-gradient(135deg, #ff5d73, #c62a47);
+  box-shadow: 0 8px 22px rgba(255, 93, 115, 0.35);
+}
+
+button.facebook {
+  background: linear-gradient(135deg, #1558C9, #0c3a8a);
+}
+
+/* Danh sách */
+.list li {
+  background: rgba(21, 88, 201, 0.08);
+  border: 1px solid rgba(21, 88, 201, 0.35);
+}
+
+.list li:hover {
+  border-color: var(--lime);
+  background: rgba(212, 255, 36, 0.07);
+}
+
+.list li button {
+  background: rgba(255, 93, 115, 0.18);
+  color: #ffd1d8;
+}
+
+/* Thống kê */
+.stats {
+  background: rgba(212, 255, 36, 0.12);
+  border: 1px solid rgba(212, 255, 36, 0.4);
+  color: var(--lime);
+}
+
+.hint { color: var(--muted); }
+.msg { color: #ff8a9b; }
+
+/* Thẻ học: viền vàng chanh - xanh */
+.flashcard {
+  background:
+    linear-gradient(160deg, #061229, #030407) padding-box,
+    linear-gradient(135deg, var(--lime), #1558C9 60%, var(--lime)) border-box;
+  color: #fff;
+  box-shadow: 0 20px 50px rgba(21, 88, 201, 0.35);
+}
+
+.flashcard:hover {
+  box-shadow: 0 26px 60px rgba(212, 255, 36, 0.25);
+}
