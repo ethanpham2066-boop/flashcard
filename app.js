@@ -258,3 +258,7 @@ async function mark(known) {
 $("know-btn").onclick = () => mark(true);
 $("dontknow-btn").onclick = () => mark(false);
 $("next-btn").onclick = nextCard;
+
+$("exit-study-btn").onclick = () => {
+  $("study-section").hidden = true;
+};
